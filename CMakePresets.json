@@ -1,0 +1,85 @@
+{
+  "buildPresets": [
+    {
+      "configurePreset": "debug",
+      "hidden": true,
+      "name": "build-base"
+    },
+    {
+      "displayName": "Build Debug",
+      "inherits": "build-base",
+      "name": "debug"
+    },
+    {
+      "configurePreset": "release",
+      "displayName": "Build Release",
+      "inherits": "build-base",
+      "name": "release"
+    }
+  ],
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 3
+  },
+  "configurePresets": [
+    {
+      "architecture": {
+        "strategy": "external",
+        "value": "arm"
+      },
+      "cacheVariables": {
+        "BUILD_DIR": "./build",
+        "CMAKE_ASM_FLAGS_DEBUG": "",
+        "CMAKE_ASM_FLAGS_RELEASE": "",
+        "CMAKE_CXX_COMPILER_WORKS": false,
+        "CMAKE_CXX_FLAGS_DEBUG": "-Og -g3 -ggdb",
+        "CMAKE_CXX_FLAGS_RELEASE": "-Os",
+        "CMAKE_CXX_STANDARD": "14",
+        "CMAKE_C_COMPILER_WORKS": false,
+        "CMAKE_C_EXTENSIONS": true,
+        "CMAKE_C_FLAGS_DEBUG": "-DDEBUG -Og -g3 -ggdb",
+        "CMAKE_C_FLAGS_RELEASE": "-DNDEBUG -Os",
+        "CMAKE_C_STANDARD": "11",
+        "CMAKE_EXE_LINKER_FLAGS_DEBUG": "-ggdb",
+        "CMAKE_EXE_LINKER_FLAGS_RELEASE": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE": true,
+        "C_WARNINGS_AS_ERRORS": "implicit-function-declaration",
+        "OBJECT_OPTIMIZATION_FLAGS": "-ffunction-sections -fdata-sections -fsingle-precision-constant -fno-isolate-erroneous-paths-dereference",
+        "OBJECT_WARNING_FLAGS": "-Wall -Wno-format -Wdouble-promotion"
+      },
+      "description": "Base configuration that all other presets inherit from",
+      "displayName": "base Configuration",
+      "generator": "Unix Makefiles",
+      "hidden": true,
+      "name": "config-base",
+      "toolchainFile": "./toolchain/max78000-gcc.cmake"
+    },
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_COMPILE_WARNING_AS_ERROR": "ON"
+      },
+      "description": "Sets debug build type and cortex arch",
+      "displayName": "Config Debug",
+      "inherits": "config-base",
+      "name": "debug",
+      "warnings": {
+        "dev": true,
+        "uninitialized": true,
+        "unusedCli": true
+      }
+    },
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "description": "Sets release build type",
+      "displayName": "Config Release",
+      "inherits": "debug",
+      "name": "release"
+    }
+  ],
+  "version": 8
+}

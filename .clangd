@@ -1,0 +1,4 @@
+CompileFlags:
+  Add: [-I/usr/arm-none-eabi/include]
+  # Change argv[0] of compile flags to `arm-none-eabi-gcc`
+  Compiler: arm-none-eabi-gcc
